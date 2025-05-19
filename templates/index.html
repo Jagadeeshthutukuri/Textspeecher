@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Speechify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- jsPDF library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <img src="https://res.cloudinary.com/duaou63qp/image/upload/v1747628562/IMG_20250518_154317_1_qgok0i.png" alt="Logo" width="80" height="80"border-radius= "15px"  />        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about-section">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services-section">Services Provided</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact-footer">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section id="about-section" class="welcome">
+        <h1 class="gradient-heading">Welcome to the Speechify </h1>
+        <h2 class="gradient-heading1">Your Smart Speech & Text Converter</h2>
+        <p>Speechify is a simple, fast, and accurate tool that transforms spoken words into written text and written text into natural-sounding speech.
+             Ideal for productivity, accessibility, and communication.</p>
+        
+    </section>
+
+    <section id="services-section" class="container my-4">
+        <h2 class="text-primary mb-3">Services Offering !</h2>
+        <ul class="list-unstyled">
+            <li><span style="color:#007bff;">&#9679;</span> Text to Speech Conversion</li>
+            <li><span style="color:#28a745;">&#9679;</span> Speech to Text Conversion</li>
+            <li><span style="color:#ffc107;">&#9679;</span> Document to Speech Conversion</li>
+            <li><span style="color:#dc3545;">&#9679;</span> Download Converted Text as DOC or PDF</li>
+        </ul>
+    </section>
+
+    <div class="container">
+        
+
+        <section>
+            <h2 class="mb-3">Text to Speech</h2>
+            <textarea id="tts-text" placeholder="Enter text here..." class="mb-3"></textarea>
+            <button id="tts-button" class="mb-3">Convert to Speech</button>
+            <audio id="tts-audio" controls class="mb-3"></audio>
+        </section>
+
+        <section>
+            <h2 class="mb-3">Speech to Text</h2>
+            <button id="stt-button" class="mb-3">Start Recording</button>
+            <p id="stt-status" class="mb-3"></p>
+            <textarea id="stt-text" placeholder="Recognized text will appear here..." readonly class="mb-3"></textarea>
+            <br/>
+            <button id="download-doc-button" class="btn btn-outline-primary mb-2" disabled>Download as DOC</button>
+            <button id="download-pdf-button" class="btn btn-outline-primary mb-3" disabled>Download as PDF</button>
+            <label for="stt-file" class="mb-2">Or upload audio file:</label>
+            <input type="file" id="stt-file" accept="audio/*" class="mb-3" />
+            <button id="stt-upload-button" class="mb-3">Convert Uploaded Audio to Text</button>
+        </section>
+
+        <section>
+            <h2 class="mb-3">Document to Speech</h2>
+            <input type="file" id="doc-file" accept=".pdf,.docx" class="mb-3" />
+            <button id="doc-button" class="mb-3">Convert Document to Speech</button>
+            <audio id="doc-audio" controls class="mb-3"></audio>
+            <p id="doc-status" class="mb-3"></p>
+        </section>
+    </div>
+
+    <section id="feedback-section" class="container my-5 p-4 border rounded bg-light">
+        <h2 class="text-center mb-4">Feedback & Rating</h2>
+        <form id="feedback-form" class="mx-auto" style="max-width: 600px;">
+            <div class="mb-3">
+                <label for="feedback-text" class="form-label">Your Feedback</label>
+                <textarea class="form-control" id="feedback-text" rows="4" placeholder="Enter your feedback here..." required></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Rating</label>
+                <div id="rating-stars" class="d-flex gap-2">
+                    <button type="button" class="btn btn-outline-primary star-btn" data-rating="1">&#9733;</button>
+                    <button type="button" class="btn btn-outline-primary star-btn" data-rating="2">&#9733;</button>
+                    <button type="button" class="btn btn-outline-primary star-btn" data-rating="3">&#9733;</button>
+                    <button type="button" class="btn btn-outline-primary star-btn" data-rating="4">&#9733;</button>
+                    <button type="button" class="btn btn-outline-primary star-btn" data-rating="5">&#9733;</button>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </div>
+            <div id="feedback-message" class="mt-3 text-center text-success" style="display:none;"></div>
+        </form>
+    </section>
+
+    <footer id="contact-footer" class="bg-dark text-white text-center py-4 mt-4 rounded">
+        <p>© 2025 Text and Speech Converter. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:julietjagadeesh1234@gmail.com" class="text-white">julietjagadeesh1234@gmail.com</a> | Phone: +91 6302330381</p>
+        <p>Follow us on:
+            <a href="https://github.com/Jagadeeshthutukuri" target="_blank" class="text-white mx-2">Github</a> |
+            <a href="https://www.facebook.com/jagadeesh.thutukuri" target="_blank" class="text-white mx-2">Facebook</a> |
+            <a href="https:www.linkedin.com/in/thutukuri-jagadeesh" target="_blank" class="text-white mx-2">LinkedIn</a>
+        </p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
