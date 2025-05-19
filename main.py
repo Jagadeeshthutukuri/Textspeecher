@@ -11,6 +11,24 @@ from flask_cors import CORS
 from pydub.utils import which
 from pydub import AudioSegment
 import logging
+import flet as ft
+import os
+
+def main(page: ft.Page):
+    page.title = "Flet App on Render"
+    page.add(ft.Text("Hello from Render + Flet!"))
+
+# Get port from environment (Render provides it)
+port = int(os.environ.get("PORT", 8550))
+
+# Run Flet web app, binding to 0.0.0.0 and Render's PORT
+ft.app(
+    target=main,
+    view=ft.WEB_BROWSER,
+    port=port,
+    host="0.0.0.0"
+)
+
 
 app = Flask(__name__)
 CORS(app)
