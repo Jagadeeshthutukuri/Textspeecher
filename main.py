@@ -17,11 +17,19 @@ import os
 import flet as ft
 
 def main(page: ft.Page):
-    # your flet layout here
-    pass
+    page.title = "Flet App on Render"
+    page.add(ft.Text("Hello from Render + Flet!"))
 
-ft.app(target=main, host="0.0.0.0", port=8501)
+# Get port from environment (Render provides it)
+port = int(os.environ.get("PORT", 8550))
 
+# Run Flet web app, binding to 0.0.0.0 and Render's PORT
+ft.app(
+    target=main,
+    view=ft.WEB_BROWSER,
+    port=port,
+    host="0.0.0.0"
+)
 
 
 app = Flask(__name__)
