@@ -14,17 +14,13 @@ import logging
 
 import os
 
-import streamlit as st
+import flet as ft
 
-st.set_page_config(page_title="TextSpeecher", page_icon="🗣️")
+def main(page: ft.Page):
+    # your flet layout here
+    pass
 
-st.title("🗣️ Text to Speech App")
-
-text = st.text_area("Enter text you want to convert to speech:")
-
-if st.button("🔊 Convert"):
-    st.success(f"Converting the following text:\n\n{text}")
-    # Add text-to-speech logic here
+ft.app(target=main, host="0.0.0.0", port=8501)
 
 
 
