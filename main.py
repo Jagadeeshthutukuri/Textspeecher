@@ -11,23 +11,21 @@ from flask_cors import CORS
 from pydub.utils import which
 from pydub import AudioSegment
 import logging
-import flet as ft
+
 import os
 
-def main(page: ft.Page):
-    page.title = "Flet App on Render"
-    page.add(ft.Text("Hello from Render + Flet!"))
+import streamlit as st
 
-# Get port from environment (Render provides it)
-port = int(os.environ.get("PORT", 8550))
+st.set_page_config(page_title="TextSpeecher", page_icon="🗣️")
 
-# Run Flet web app, binding to 0.0.0.0 and Render's PORT
-ft.app(
-    target=main,
-    view=ft.WEB_BROWSER,
-    port=port,
-    host="0.0.0.0"
-)
+st.title("🗣️ Text to Speech App")
+
+text = st.text_area("Enter text you want to convert to speech:")
+
+if st.button("🔊 Convert"):
+    st.success(f"Converting the following text:\n\n{text}")
+    # Add text-to-speech logic here
+
 
 
 app = Flask(__name__)
